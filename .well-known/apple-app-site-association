@@ -1,0 +1,42 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": [
+          "5HR2N2P2J2.com.travelinters.app"
+        ],
+        "components": [
+          {
+            "/": "/travelinters/invite/*"
+          },
+          {
+            "/": "/travelinters/join/*"
+          },
+          {
+            "/": "/travelinters/plan/*"
+          },
+          {
+            "/": "/travelinters/match/*"
+          },
+          {
+            "/": "/travelinters/chat/*"
+          },
+          {
+            "/": "/travelinters/conversation/*"
+          },
+          {
+            "/": "/travelinters/discover/*"
+          },
+          {
+            "/": "/travelinters/trip/*"
+          }
+        ]
+      }
+    ]
+  },
+  "webcredentials": {
+    "apps": [
+      "5HR2N2P2J2.com.travelinters.app"
+    ]
+  }
+}
