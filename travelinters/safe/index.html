@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; connect-src https://nsefbywphawwlsekesjm.supabase.co; img-src data:; style-src 'unsafe-inline'; script-src 'unsafe-inline'; base-uri 'none'; form-action 'none'">
+<title>Travelinters</title>
+<style>
+body{margin:0;background:#f6f3ee;color:#1d2433;font:17px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+main{max-width:560px;margin:0 auto;padding:24px 16px}
+</style>
+</head>
+<body>
+<main><p id="state">…</p><noscript><p>This page needs JavaScript to show the shared plan.</p></noscript></main>
+<script>
+// The safety page a traveller shared (see supabase/functions/safety-share).
+//
+// This file is only a frame. Supabase serves HTML from *.supabase.co as text/plain, so
+// the page is fetched here and put on screen. The token is the part of the address after
+// "#": browsers never send that part to this host, and it is posted in a request body,
+// so it appears in no URL and no access log. Nothing is stored and nothing else is loaded.
+(function () {
+  var endpoint = "https://nsefbywphawwlsekesjm.supabase.co/functions/v1/safety-share";
+  var token = (location.hash || "").replace(/^#/, "");
+  var language = new URLSearchParams(location.search).get("lang");
+  fetch(endpoint + (language ? "?lang=" + encodeURIComponent(language) : ""), {
+    method: "POST",
+    // text/plain keeps this a simple request (no preflight).
+    headers: { "content-type": "text/plain" },
+    body: JSON.stringify({ token: token }),
+    cache: "no-store",
+    credentials: "omit",
+    referrerPolicy: "no-referrer"
+  }).then(function (response) {
+    return response.text().then(function (html) {
+      var parsed = new DOMParser().parseFromString(html, "text/html");
+      // Markup and styles only: nothing in the answer is executed.
+      parsed.querySelectorAll("script, link, iframe, object, embed, base, meta[http-equiv]").forEach(function (node) { node.remove(); });
+      document.documentElement.lang = response.headers.get("content-language") || parsed.documentElement.lang || "en";
+      document.title = parsed.title || document.title;
+      document.head.querySelectorAll("style").forEach(function (node) { node.remove(); });
+      parsed.head.querySelectorAll("style").forEach(function (node) { document.head.appendChild(document.importNode(node, true)); });
+      document.body.replaceChildren.apply(document.body, Array.prototype.map.call(parsed.body.childNodes, function (node) {
+        return document.importNode(node, true);
+      }));
+    });
+  }).catch(function () {
+    document.getElementById("state").textContent = "This page could not be loaded. Check your connection and reload.";
+  });
+})();
+</script>
+</body>
+</html>
