@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
 <meta name="referrer" content="no-referrer">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; connect-src https://nsefbywphawwlsekesjm.supabase.co; img-src data:; style-src 'unsafe-inline'; script-src 'unsafe-inline'; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; connect-src https://api.tripvo.app; img-src data:; style-src 'unsafe-inline'; script-src 'unsafe-inline'; base-uri 'none'; form-action 'none'">
 <title>Tripvo</title>
 <style>
 body{margin:0;background:#f6f3ee;color:#1d2433;font:17px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
@@ -15,14 +15,14 @@ main{max-width:560px;margin:0 auto;padding:24px 16px}
 <body>
 <main><p id="state">…</p><noscript><p>This page needs JavaScript to show the shared plan.</p></noscript></main>
 <script>
-// The safety page a traveller shared (see supabase/functions/safety-share).
+// The safety page a traveller shared (served by the Cloudflare Worker, cloudflare/src/domains/wp05; formerly supabase/functions/safety-share).
 //
 // This file is only a frame. Supabase serves HTML from *.supabase.co as text/plain, so
 // the page is fetched here and put on screen. The token is the part of the address after
 // "#": browsers never send that part to this host, and it is posted in a request body,
 // so it appears in no URL and no access log. Nothing is stored and nothing else is loaded.
 (function () {
-  var endpoint = "https://nsefbywphawwlsekesjm.supabase.co/functions/v1/safety-share";
+  var endpoint = "https://api.tripvo.app/functions/v1/safety-share";
   var token = (location.hash || "").replace(/^#/, "");
   var language = new URLSearchParams(location.search).get("lang");
   fetch(endpoint + (language ? "?lang=" + encodeURIComponent(language) : ""), {
