@@ -33,6 +33,7 @@ li{margin-bottom:8px}
 <img src="../icon-180.png" width="64" height="64" alt="" style="border-radius:14px">
 <h1 data-t="title">You're invited to Tripvo</h1>
 <p data-t="pitch">See which travelers will be in the same city at the same time as you, and make a plan together.</p>
+<p id="with-trip" hidden data-t="trip">A friend shared their trip with you. Add your own trip to see if your travel plans overlap.</p>
 
 <div class="card" id="with-code" hidden>
   <p class="label" data-t="codeLabel">Your invite code</p>
@@ -44,17 +45,19 @@ li{margin-bottom:8px}
 
 <ol>
   <li data-t="step1">Get the app from the App Store.</li>
-  <li data-t="step2">Set up your first trip and tap “Have an invite code?”. You can also enter it later under Profile → Invite friends.</li>
+  <li id="step2" data-t="step2">Set up your first trip and tap “Have an invite code?”. You can also enter it later under Profile → Invite friends.</li>
 </ol>
 
 <a class="button primary" href="https://apps.apple.com/app/id6818798142" data-t="store">Get Tripvo on the App Store</a>
 <a class="button secondary" id="open" href="travelinters://invite" data-t="open">I already have the app</a>
 
-<p class="muted" style="margin-top:24px" data-t="fineprint">The reward is a promotion for new travelers who sign in with Apple, add a profile photo and create a first trip.</p>
+<p class="muted" style="margin-top:24px" id="fineprint" data-t="fineprint">The reward is a promotion for new travelers who sign in with Apple, add a profile photo and create a first trip.</p>
 <p class="muted"><a href="../privacy.html" style="color:inherit">Privacy</a> · <a href="../terms.html" style="color:inherit">Terms</a></p>
 </main>
 <script>
 // The landing page of an invite link: https://enfurbay.github.io/travelinters/invite/?c=CODE
+// and of a shared trip ("Share Trip" in the app): …/invite/?t=<trip id>. Older trip links
+// (…/invite/<trip id>) reach it through the site's 404.html, which rewrites them to ?t=.
 //
 // It shows the code so it can be typed or copied into the app after installing: there is
 // no way to hand it to a fresh install without a tracking vendor, and the app never reads
@@ -75,7 +78,9 @@ li{margin-bottom:8px}
   "step1": "Uygulamayı App Store'dan indir.",
   "step2": "İlk gezini oluştur ve “Davet kodun var mı?” seçeneğine dokun. Kodu daha sonra Profil → Arkadaşlarını davet et bölümünden de girebilirsin.",
   "noCode": "Arkadaşından davet kodunu iste, sonra uygulamada gir.",
-  "fineprint": "Ödül; Apple ile giriş yapan, profil fotoğrafı ekleyen ve ilk gezisini oluşturan yeni gezginlere yönelik bir promosyondur."
+  "fineprint": "Ödül; Apple ile giriş yapan, profil fotoğrafı ekleyen ve ilk gezisini oluşturan yeni gezginlere yönelik bir promosyondur.",
+  "trip": "Bir arkadaşın gezisini seninle paylaştı. Seyahat planlarınızın çakışıp çakışmadığını görmek için kendi gezini ekle.",
+  "tripStep2": "Gezini oluştur: Keşfet, seninle aynı anda orada olacak gezginleri gösterir."
  },
  "de": {
   "title": "Du bist zu Tripvo eingeladen",
@@ -89,7 +94,9 @@ li{margin-bottom:8px}
   "step1": "Lade die App im App Store.",
   "step2": "Leg deine erste Reise an und tippe auf „Hast du einen Einladungscode?“. Du kannst ihn auch später unter Profil → Freunde einladen eingeben.",
   "noCode": "Frag die Person, die dich eingeladen hat, nach ihrem Einladungscode und gib ihn dann in der App ein.",
-  "fineprint": "Die Prämie ist eine Werbeaktion für neue Reisende, die sich mit Apple anmelden, ein Profilfoto hinzufügen und eine erste Reise erstellen."
+  "fineprint": "Die Prämie ist eine Werbeaktion für neue Reisende, die sich mit Apple anmelden, ein Profilfoto hinzufügen und eine erste Reise erstellen.",
+  "trip": "Jemand hat seine Reise mit dir geteilt. Leg deine eigene Reise an, um zu sehen, ob sich eure Reisepläne überschneiden.",
+  "tripStep2": "Leg deine Reise an: Unter „Entdecken“ siehst du die Reisenden, die zur selben Zeit dort sind wie du."
  },
  "it": {
   "title": "Hai un invito per Tripvo",
@@ -103,7 +110,9 @@ li{margin-bottom:8px}
   "step1": "Scarica l'app dall'App Store.",
   "step2": "Crea il tuo primo viaggio e tocca “Hai un codice invito?”. Puoi inserirlo anche più tardi in Profilo → Invita amici.",
   "noCode": "Chiedi al tuo amico il suo codice invito, poi inseriscilo nell'app.",
-  "fineprint": "Il premio è una promozione per i nuovi viaggiatori che accedono con Apple, aggiungono una foto del profilo e creano un primo viaggio."
+  "fineprint": "Il premio è una promozione per i nuovi viaggiatori che accedono con Apple, aggiungono una foto del profilo e creano un primo viaggio.",
+  "trip": "Un amico ha condiviso il suo viaggio con te. Aggiungi il tuo viaggio per vedere se i vostri piani si sovrappongono.",
+  "tripStep2": "Crea il tuo viaggio: in Scopri vedi i viaggiatori che saranno lì nello stesso periodo."
  },
  "es": {
   "title": "Tienes una invitación a Tripvo",
@@ -117,7 +126,9 @@ li{margin-bottom:8px}
   "step1": "Descarga la app en el App Store.",
   "step2": "Crea tu primer viaje y toca «¿Tienes un código de invitación?». También puedes introducirlo más tarde en Perfil → Invitar amigos.",
   "noCode": "Pídele a tu amigo su código de invitación e introdúcelo en la app.",
-  "fineprint": "La recompensa es una promoción para nuevos viajeros que inician sesión con Apple, añaden una foto de perfil y crean un primer viaje."
+  "fineprint": "La recompensa es una promoción para nuevos viajeros que inician sesión con Apple, añaden una foto de perfil y crean un primer viaje.",
+  "trip": "Un amigo ha compartido su viaje contigo. Añade tu propio viaje para ver si vuestros planes coinciden.",
+  "tripStep2": "Crea tu viaje: en Descubrir verás a los viajeros que estarán allí al mismo tiempo que tú."
  },
  "fr": {
   "title": "Voici ton invitation à Tripvo",
@@ -131,7 +142,9 @@ li{margin-bottom:8px}
   "step1": "Télécharge l’app sur l’App Store.",
   "step2": "Configure ton premier voyage et touche « Tu as un code d’invitation ? ». Tu peux aussi le saisir plus tard dans Profil → Inviter des amis.",
   "noCode": "Demande son code d’invitation à ton ami, puis saisis-le dans l’app.",
-  "fineprint": "La récompense est une promotion réservée aux nouveaux voyageurs qui se connectent avec Apple, ajoutent une photo de profil et créent un premier voyage."
+  "fineprint": "La récompense est une promotion réservée aux nouveaux voyageurs qui se connectent avec Apple, ajoutent une photo de profil et créent un premier voyage.",
+  "trip": "Un ami a partagé son voyage avec toi. Ajoute ton propre voyage pour voir si vos projets se recoupent.",
+  "tripStep2": "Configure ton voyage : Découvrir te montre les voyageurs qui seront sur place en même temps que toi."
  },
  "pt-BR": {
   "title": "Você recebeu um convite para o Tripvo",
@@ -145,7 +158,9 @@ li{margin-bottom:8px}
   "step1": "Baixe o app na App Store.",
   "step2": "Configure sua primeira viagem e toque em “Tem um código de convite?”. Você também pode inseri-lo depois em Perfil → Convidar amigos.",
   "noCode": "Peça o código de convite ao seu amigo e insira-o no app.",
-  "fineprint": "A recompensa é uma promoção para novos viajantes que iniciam sessão com a Apple, adicionam uma foto de perfil e criam a primeira viagem."
+  "fineprint": "A recompensa é uma promoção para novos viajantes que iniciam sessão com a Apple, adicionam uma foto de perfil e criam a primeira viagem.",
+  "trip": "Um amigo compartilhou a viagem dele com você. Adicione a sua viagem para ver se os planos de vocês coincidem.",
+  "tripStep2": "Configure sua viagem: em Descobrir você vê os viajantes que vão estar lá ao mesmo tempo que você."
  },
  "ja": {
   "title": "Tripvoに招待されました",
@@ -159,7 +174,9 @@ li{margin-bottom:8px}
   "step1": "App Storeからアプリを入手します。",
   "step2": "最初の旅行を設定して、「招待コードをお持ちですか？」をタップします。あとから「プロフィール」→「友人を招待」で入力することもできます。",
   "noCode": "友人に招待コードを教えてもらい、アプリで入力してください。",
-  "fineprint": "この特典は、Appleでサインインし、プロフィール写真を追加して、最初の旅行を作成した新しい旅行者を対象とするプロモーションです。"
+  "fineprint": "この特典は、Appleでサインインし、プロフィール写真を追加して、最初の旅行を作成した新しい旅行者を対象とするプロモーションです。",
+  "trip": "友だちが旅行を共有してくれました。自分の旅行を追加すると、旅の予定が重なるか確認できます。",
+  "tripStep2": "旅行を登録しましょう。「さがす」に、同じ時期にそこにいる旅行者が表示されます。"
  },
  "ko": {
   "title": "Tripvo에 초대받았어요",
@@ -173,7 +190,9 @@ li{margin-bottom:8px}
   "step1": "App Store에서 앱을 받으세요.",
   "step2": "첫 여행을 설정하고 ‘초대 코드가 있나요?’를 탭하세요. 나중에 프로필 → 친구 초대에서 입력할 수도 있어요.",
   "noCode": "친구에게 초대 코드를 물어본 뒤 앱에서 입력하세요.",
-  "fineprint": "이 보상은 Apple로 로그인하고, 프로필 사진을 추가하고, 첫 여행을 만든 신규 여행자를 위한 프로모션이에요."
+  "fineprint": "이 보상은 Apple로 로그인하고, 프로필 사진을 추가하고, 첫 여행을 만든 신규 여행자를 위한 프로모션이에요.",
+  "trip": "친구가 여행을 공유했어요. 내 여행을 추가하면 여행 일정이 겹치는지 확인할 수 있어요.",
+  "tripStep2": "여행을 등록하세요. ‘탐색’에서 같은 기간에 그곳에 있을 여행자를 볼 수 있어요."
  },
  "pl": {
   "title": "Masz zaproszenie do Tripvo",
@@ -187,7 +206,9 @@ li{margin-bottom:8px}
   "step1": "Pobierz aplikację z App Store.",
   "step2": "Ustaw swoją pierwszą podróż i stuknij „Masz kod zaproszenia?”. Możesz też wpisać go później w Profil → Zaproś znajomych.",
   "noCode": "Poproś znajomego o kod zaproszenia i wpisz go w aplikacji.",
-  "fineprint": "Nagroda to promocja dla nowych podróżników, którzy zalogują się przez Apple, dodadzą zdjęcie profilowe i utworzą pierwszą podróż."
+  "fineprint": "Nagroda to promocja dla nowych podróżników, którzy zalogują się przez Apple, dodadzą zdjęcie profilowe i utworzą pierwszą podróż.",
+  "trip": "Znajomy udostępnił ci swoją podróż. Dodaj własną podróż, aby sprawdzić, czy wasze plany się pokrywają.",
+  "tripStep2": "Dodaj swoją podróż: w zakładce Odkrywaj zobaczysz podróżników, którzy będą tam w tym samym czasie co ty."
  },
  "nb": {
   "title": "Du er invitert til Tripvo",
@@ -201,7 +222,9 @@ li{margin-bottom:8px}
   "step1": "Last ned appen fra App Store.",
   "step2": "Sett opp din første reise og trykk på «Har du en invitasjonskode?». Du kan også skrive den inn senere under Profil → Inviter venner.",
   "noCode": "Be vennen din om invitasjonskoden, og skriv den inn i appen.",
-  "fineprint": "Belønningen er en kampanje for nye reisende som logger på med Apple, legger til et profilbilde og oppretter sin første reise."
+  "fineprint": "Belønningen er en kampanje for nye reisende som logger på med Apple, legger til et profilbilde og oppretter sin første reise.",
+  "trip": "En venn har delt reisen sin med deg. Legg til din egen reise for å se om reiseplanene deres overlapper.",
+  "tripStep2": "Legg inn reisen din: Utforsk viser de reisende som er der samtidig med deg."
  },
  "nl": {
   "title": "Je bent uitgenodigd voor Tripvo",
@@ -215,7 +238,9 @@ li{margin-bottom:8px}
   "step1": "Download de app in de App Store.",
   "step2": "Stel je eerste reis in en tik op ‘Heb je een uitnodigingscode?’. Je kunt hem ook later invoeren via Profiel → Vrienden uitnodigen.",
   "noCode": "Vraag je vriend om de uitnodigingscode en voer die in de app in.",
-  "fineprint": "De beloning is een actie voor nieuwe reizigers die inloggen met Apple, een profielfoto toevoegen en een eerste reis aanmaken."
+  "fineprint": "De beloning is een actie voor nieuwe reizigers die inloggen met Apple, een profielfoto toevoegen en een eerste reis aanmaken.",
+  "trip": "Een vriend heeft zijn reis met je gedeeld. Voeg je eigen reis toe om te zien of jullie reisplannen overlappen.",
+  "tripStep2": "Maak je reis aan: bij Ontdekken zie je de reizigers die er tegelijk met jou zijn."
  },
  "da": {
   "title": "Du er inviteret til Tripvo",
@@ -229,7 +254,9 @@ li{margin-bottom:8px}
   "step1": "Hent appen i App Store.",
   "step2": "Opret din første rejse, og tryk på ”Har du en invitationskode?”. Du kan også indtaste den senere under Profil → Inviter venner.",
   "noCode": "Bed din ven om invitationskoden, og indtast den i appen.",
-  "fineprint": "Belønningen er en kampagne for nye rejsende, der logger ind med Apple, tilføjer et profilbillede og opretter deres første rejse."
+  "fineprint": "Belønningen er en kampagne for nye rejsende, der logger ind med Apple, tilføjer et profilbillede og opretter deres første rejse.",
+  "trip": "En ven har delt sin rejse med dig. Tilføj din egen rejse for at se, om jeres rejseplaner overlapper.",
+  "tripStep2": "Opret din rejse: Under Opdag kan du se de rejsende, der er der samtidig med dig."
  }
 };
   var language = (navigator.languages && navigator.languages[0]) || navigator.language || "en";
@@ -246,6 +273,16 @@ li{margin-bottom:8px}
   // The same alphabet the app and the server use: eight characters, no look-alikes.
   var raw = (new URLSearchParams(location.search).get("c") || "").toUpperCase().replace(/[\s-]/g, "");
   var code = /^[ABCDEFGHJKMNPQRSTUVWXYZ23456789]{8}$/.test(raw) ? raw : null;
+  // A shared trip: the app opens it on the trip invite (Discover, or trip setup).
+  var trip = (new URLSearchParams(location.search).get("t") || "").toLowerCase();
+  if (!code && /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/.test(trip)) {
+    document.getElementById("with-trip").hidden = false;
+    document.getElementById("fineprint").hidden = true;
+    document.getElementById("step2").textContent = (strings && strings.tripStep2) ||
+      "Set up your trip: Discover shows the travelers who will be there at the same time as you.";
+    document.getElementById("open").href = "travelinters://invite/" + trip;
+    return;
+  }
   if (!code) {
     document.getElementById("without-code").hidden = false;
     return;

@@ -1,1 +1,39 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Travelinters</title><style>body{font:17px/1.55 -apple-system,system-ui,sans-serif;max-width:680px;margin:40px auto;padding:0 20px;color:#1a2033}a{color:#FF5C3A}h1{font-size:30px}.btn{display:inline-block;background:#FF5C3A;color:#fff;padding:12px 20px;border-radius:14px;text-decoration:none;font-weight:600}</style></head><body><h1>Open this in Travelinters</h1><p id="m">This link opens in the Travelinters app.</p><p><a class="btn" id="o" href="travelinters://discover">Open the app</a></p><script>var p=location.pathname.replace(/^\/travelinters\//,"");if(location.pathname.indexOf("/travelinters/")===0&&p){document.getElementById("o").href="travelinters://"+p;}else{document.getElementById("m").textContent="This page does not exist.";document.getElementById("o").style.display="none";}</script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; base-uri 'none'; form-action 'none'">
+<title>Tripvo</title>
+<link rel="icon" type="image/png" href="/travelinters/icon-32.png">
+<style>
+body{margin:0;background:#f6f3ee;color:#1a2033;font:17px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+main{max-width:520px;margin:0 auto;padding:32px 20px 48px}
+h1{font-size:28px;line-height:1.2;margin:16px 0 8px}
+a{color:inherit}
+</style>
+</head>
+<body>
+<main>
+<h1>Page not found</h1>
+<p>This link is not on this site. Tripvo links open in the app; you can <a href="https://apps.apple.com/app/id6818798142">get Tripvo on the App Store</a>.</p>
+</main>
+<script>
+// GitHub Pages serves this page for any path it has no file for. It goes at the ROOT of the
+// enfurbay/enfurbay.github.io repo (beside .well-known/, not inside travelinters/): Pages
+// uses only the site's top-level 404.html.
+//
+// Trip links shared before 2026-10-24 have the trip in the path
+// (/travelinters/invite/<id>), which no static file can serve; the app still opens them
+// (universal link), and for everyone else this rewrites them to the invite page's query
+// form (/travelinters/invite/?t=<id>). Nothing is sent anywhere.
+(function () {
+  var match = /^\/travelinters\/(?:invite|join)\/([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12})\/?$/
+    .exec(location.pathname);
+  if (match) location.replace("/travelinters/invite/?t=" + match[1].toLowerCase());
+})();
+</script>
+</body>
+</html>
